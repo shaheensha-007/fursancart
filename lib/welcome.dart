@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fursancart/home.dart';
+
+import 'letstart.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -64,7 +67,61 @@ class _WelcomeState extends State<Welcome> {
                 borderRadius: BorderRadius.circular(8),
               ),
 
-            )
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            GestureDetector(onTap: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Home()));},
+              child: Container(
+                width:350,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Color(0xffFFC113),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child:Center(
+                  child: Text("LOG IN",
+                    style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),
+                  ),
+                ),
+              ),
+
+
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left:230),
+                  child: TextButton(onPressed: (){}, child: Text("Forgot Password?",selectionColor: Colors.cyan,)),
+                ),
+              ],
+            ),
+            Container(width: 100,
+              child: Row(
+                children: [
+                  Container(
+                    height: 40,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(image: AssetImage("assets/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"),fit: BoxFit.contain),shape: BoxShape.circle),
+                  ),
+                  Container(
+                    height: 40,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage("assets/facebook-logo-icon-facebook-icon-png-images-icons-and-png-backgrounds-1.png"),fit: BoxFit.contain),shape: BoxShape.circle),
+                  ),
+                ],
+              ),
+            ),
+            TextButton( child:Text("Dont have an account?",style: TextStyle(color:Colors.black),),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Letstart()));}
+
+            ),
           ],
         ),
 
