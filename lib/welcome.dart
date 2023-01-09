@@ -27,6 +27,10 @@ class _WelcomeState extends State<Welcome> {
         ),
         child:Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
+            SizedBox(
+              height: 60,
+            ),
             Container(
               child: TextFormField(
                 decoration: InputDecoration(
@@ -89,7 +93,7 @@ class _WelcomeState extends State<Welcome> {
 
             ),
             SizedBox(
-              height: 20,
+              height: 25,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -100,6 +104,9 @@ class _WelcomeState extends State<Welcome> {
                   child: TextButton(onPressed: (){}, child: Text("Forgot Password?",selectionColor: Colors.cyan,)),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 50,
             ),
             Container(width: 100,
               child: Row(
@@ -119,8 +126,8 @@ class _WelcomeState extends State<Welcome> {
                 ],
               ),
             ),
-            TextButton( child:Text("Dont have an account?",style: TextStyle(color:Colors.black),),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Letstart()));}
-
+            Text("Dont have an account?"),
+            TextButton( child:Text("Sign in",style: TextStyle(color:Colors.black,fontSize:15,fontWeight:FontWeight.bold ),),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Letstart()));}
             ),
           ],
         ),

@@ -43,7 +43,7 @@ class _OpenpageState extends State<Openpage> {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           SizedBox(
-            height: 70,
+            height: 40,
           ),
 
           GestureDetector(
