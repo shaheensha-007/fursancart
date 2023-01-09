@@ -27,10 +27,14 @@ class _LetstartState extends State<Letstart> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/Signup.jpg"),
+            fit: BoxFit.cover
           ),
         ),
         child: Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 200,
+            ),
           Container(
           child: TextFormField(
           decoration: InputDecoration(
@@ -51,7 +55,7 @@ class _LetstartState extends State<Letstart> {
       ),
     ),
     SizedBox(
-    height: 20,
+    height: 30,
     ),
     Container(
     child: TextFormField(
@@ -113,11 +117,14 @@ class _LetstartState extends State<Letstart> {
     ),
     ),
             SizedBox(
-              height: 60,
+              height: 40,
             ),
             Row(
               children: [
-                Text("Alredy have an account? "),TextButton( child:Text("login",style: TextStyle(color:Colors.black,fontSize:15,fontWeight:FontWeight.bold ),),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Welcome()));}
+                Padding(
+                  padding: const EdgeInsets.only(left: 90),
+                  child: Text("Alredy have an account? "),
+                ),TextButton( child:Text("login",style: TextStyle(color:Colors.black,fontSize:15,fontWeight:FontWeight.bold ),),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Welcome()));}
                 ),
               ],
             ),

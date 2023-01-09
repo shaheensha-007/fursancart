@@ -23,13 +23,14 @@ class _WelcomeState extends State<Welcome> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/Login.jpg"),
+            fit: BoxFit.cover,
           )
         ),
         child:Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
             SizedBox(
-              height: 60,
+              height: 300,
             ),
             Container(
               child: TextFormField(
@@ -106,7 +107,7 @@ class _WelcomeState extends State<Welcome> {
               ],
             ),
             SizedBox(
-              height: 50,
+              height: 30,
             ),
             Container(width: 100,
               child: Row(
@@ -126,9 +127,16 @@ class _WelcomeState extends State<Welcome> {
                 ],
               ),
             ),
-            Text("Dont have an account?"),
-            TextButton( child:Text("Sign in",style: TextStyle(color:Colors.black,fontSize:15,fontWeight:FontWeight.bold ),),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Letstart()));}
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 90),
+                  child: Text("Dont have an account?"),
+                ),   TextButton( child:Text("Sign in",style: TextStyle(color:Colors.black,fontSize:15,fontWeight:FontWeight.bold ),),onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Letstart()));}
+                ),
+              ],
             ),
+
           ],
         ),
 

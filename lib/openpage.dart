@@ -27,10 +27,10 @@ class _OpenpageState extends State<Openpage> {
         ),
         body: Column(children: [
           Padding(
-            padding: const EdgeInsets.only(left: 90, top: 200),
+            padding: const EdgeInsets.only(left: 30, top:60),
             child: Container(
-              height: 313,
-              width: 314,
+              height: 320,
+              width: 380,
               decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/HOME 1_Mesa de trabajo 1 1.png"),
@@ -38,12 +38,18 @@ class _OpenpageState extends State<Openpage> {
               ),
             ),
           ),
-          Text(
-            "Let’s Start your\n next level shopping...",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Text(
+              "Let’s Start your\n next level shopping...",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
           ),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
 
           GestureDetector(
@@ -52,14 +58,16 @@ class _OpenpageState extends State<Openpage> {
                   MaterialPageRoute(builder: (BuildContext a) => Welcome()));
             },
 
-            child: Container(
-              width: 360,
-              height: 60,
-              decoration: BoxDecoration(
-                color:Color(0xffFFC113),
-                borderRadius: BorderRadius.circular(15),
+            child: Center(
+              child: Container(
+                width: 360,
+                height: 60,
+                decoration: BoxDecoration(
+                  color:Color(0xffFFC113),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Center(child: Text("LOG IN",style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),)),
               ),
-              child: Center(child: Text("LOG IN",style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),)),
             ),
           ),
           SizedBox(
