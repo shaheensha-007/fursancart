@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fursancart/signup_block/signup_bloc.dart';
 import 'package:fursancart/welcome.dart';
 
 import 'home.dart';
@@ -11,9 +13,47 @@ class Letstart extends StatefulWidget {
 }
 
 class _LetstartState extends State<Letstart> {
+  TextEditingController username=TextEditingController();
+  TextEditingController email=TextEditingController();
+  TextEditingController password=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    BlocListener<SignupBloc, SignupState>(
+      listener: (context, state) {
+        if(state is SignupblocLoaded){
+          print('loaded');
+          Navigator.of(context).pop();
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
+        }
+        if (state is SignupblocLoading){
+
+          print('loding');
+          showDialog(context: context,
+        builder: (BuildContext a)=>AlertDialog(
+        content: Container(
+        width: 30,
+        height: 20,
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(),
+        SizedBox(
+        height: 20,
+        ),
+        Text("please wait",style: TextStyle(color:Colors.black,fontWeight: FontWeight.w400),)
+        ],
+        ),
+        ),
+        title: Center(child: Text("loading"),),
+        ));
+        }
+        if(state is SignupblocError){
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Already registered")));
+        }
+      },
+    );
+    return Scaffold(resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Container(
         height: MediaQuery
@@ -36,7 +76,7 @@ class _LetstartState extends State<Letstart> {
               height: 200,
             ),
           Container(
-          child: TextFormField(
+          child: TextFormField(controller: email,
           decoration: InputDecoration(
           focusedBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
@@ -44,6 +84,8 @@ class _LetstartState extends State<Letstart> {
           icon: Icon(
             Icons.email, color: Color(0xff767676),
           ),
+            hintText: ("email"),
+            hintStyle: TextStyle(fontSize: 14),
         ),
       ),
       width: 350,
@@ -58,7 +100,7 @@ class _LetstartState extends State<Letstart> {
     height: 30,
     ),
     Container(
-    child: TextFormField(
+    child: TextFormField(controller: username,
     decoration: InputDecoration(
     focusedBorder: InputBorder.none,
     disabledBorder: InputBorder.none,
@@ -80,7 +122,7 @@ class _LetstartState extends State<Letstart> {
     height:30,
     ),
     Container(width: 350,height: 50,
-    child: TextFormField(
+    child: TextFormField(controller: password,
     decoration: InputDecoration(
     focusedBorder: InputBorder.none,
     disabledBorder: InputBorder.none,
@@ -101,7 +143,9 @@ class _LetstartState extends State<Letstart> {
     SizedBox(
     height: 40,
     ),
-    GestureDetector(onTap: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Home()));},
+    GestureDetector(onTap: (){
+      BlocProvider.of<SignupBloc>(context).add(FetchSignupEvent(username: username.text, email: email.text, password: password.text));
+    },
     child: Container(
     width:350,
     height: 60,

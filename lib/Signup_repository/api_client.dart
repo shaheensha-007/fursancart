@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:http/http.dart';
 
+import 'api_exception.dart';
+
 
 class ApiClient {
 

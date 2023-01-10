@@ -13,12 +13,12 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
  late Usermodel signup;
  SignupApi signupApi=SignupApi();
   SignupBloc() : super(SignupInitial()) {
-    on<SignupEvent>((event, emit)async {
+    on<FetchSignupEvent>((event, emit)async {
       // TODO: implement event handler
       emit(SignupblocLoading());
       try{
 
-        signup = await signupApi.signup();
+        signup = await signupApi.signup(event.email,event.username,event.password);
         emit(SignupblocLoaded());
       } catch(e){
         emit(SignupblocError());
