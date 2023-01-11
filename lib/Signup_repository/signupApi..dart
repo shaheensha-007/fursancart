@@ -18,7 +18,7 @@ class SignupApi {
   Future<Usermodel> signup(String email, String username,String password) async {
     var boby = {"Email":email, "Username":username,"Password": password};
     Response response = await apiClient.invokeAPI(trendingpath, 'POST', boby);
-
+print(response);
     return Usermodel.fromJson(jsonDecode(response.body));
   }
 

@@ -144,7 +144,7 @@ class _LetstartState extends State<Letstart> {
     height: 40,
     ),
     GestureDetector(onTap: (){
-      BlocProvider.of<SignupBloc>(context).add(FetchSignupEvent(username: username.text, email: email.text, password: password.text));
+      BlocProvider.of<SignupBloc>(context).add(FetchSignupEvent(email: email.text,username: username.text,password:password.text ));
     },
     child: Container(
     width:350,

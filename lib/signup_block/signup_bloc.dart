@@ -16,12 +16,16 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     on<FetchSignupEvent>((event, emit)async {
       // TODO: implement event handler
       emit(SignupblocLoading());
+      print('loading');
       try{
 
         signup = await signupApi.signup(event.email,event.username,event.password);
         emit(SignupblocLoaded());
+        print('loaded');
       } catch(e){
+        print(e);
         emit(SignupblocError());
+        print('error');
       }
     });
   }
