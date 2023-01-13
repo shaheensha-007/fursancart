@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fursancart/home.dart';
 
-import 'letstart.dart';
+import 'signup_page/letstart.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
