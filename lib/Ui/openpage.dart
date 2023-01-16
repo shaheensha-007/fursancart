@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fursancart/welcome.dart';
+import 'package:fursancart/Ui/welcome.dart';
 
-import 'signup_page/letstart.dart';
+import 'letstart.dart';
 
 class Openpage extends StatefulWidget {
   const Openpage({Key? key}) : super(key: key);

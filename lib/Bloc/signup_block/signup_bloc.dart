@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:fursancart/Signup_repository/signupApi..dart';
 import 'package:meta/meta.dart';
 
-import '../usermodel.dart';
+import '../../Repository/api/Signup_repository/signupApi..dart';
+import '../../Repository/modelclass/usermodel.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';

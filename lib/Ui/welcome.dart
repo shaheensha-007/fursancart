@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fursancart/home.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fursancart/Bloc/wlcome_block/welcome_bloc.dart';
+import 'package:fursancart/Ui/home.dart';
 
-import 'signup_page/letstart.dart';
+import 'letstart.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -11,11 +13,48 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  TextEditingController email=TextEditingController();
+  TextEditingController password=TextEditingController();
   @override
   Widget build(BuildContext context) {
+
+    BlocListener<WelcomeBloc, WelcomeState>(
+      listener: (context, state) {
+        if(state is welcomeblocLoaded){
+          print('loaded');
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
+        }
+        if (state is welcomeblocLoading){
+
+          print('loding');
+          showDialog(context: context,
+              builder: (BuildContext a)=>AlertDialog(
+                content: Container(
+                  width: 30,
+                  height: 20,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text("please wait",style: TextStyle(color:Colors.black,fontWeight: FontWeight.w400),)
+                    ],
+                  ),
+                ),
+                title: Center(child: Text("loading"),),
+              ));
+        }
+        if(state is welcomeblocError){
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Already registered")));
+        }
+      },
+    );
     MediaQuery.of(context).size.height;
     MediaQuery.of(context).size.width;
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -33,7 +72,7 @@ class _WelcomeState extends State<Welcome> {
               height: 300,
             ),
             Container(
-              child: TextFormField(
+              child: TextFormField(controller: email,
                 decoration: InputDecoration(
                   focusedBorder: InputBorder.none,
                   disabledBorder: InputBorder.none,
@@ -41,7 +80,7 @@ class _WelcomeState extends State<Welcome> {
                   icon: Icon(
                     Icons.account_circle_outlined,color: Color(0xff767676),
                   ),
-                  hintText: 'username',
+                  hintText: 'email',
                   hintStyle: TextStyle(fontSize: 14),),
               ),
               width: 350,height: 50,
@@ -55,7 +94,7 @@ class _WelcomeState extends State<Welcome> {
               height:50,
             ),
             Container(width: 350,height: 50,
-              child: TextFormField(
+              child: TextFormField(controller: password,
                 decoration: InputDecoration(
                   focusedBorder: InputBorder.none,
                   disabledBorder: InputBorder.none,
@@ -76,7 +115,7 @@ class _WelcomeState extends State<Welcome> {
             SizedBox(
               height: 40,
             ),
-            GestureDetector(onTap: (){Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext a)=>Home()));},
+            GestureDetector(onTap: (){ BlocProvider.of<WelcomeBloc>(context).add(FetchWelcomeEvent(email: email.text, password: password.text));},
               child: Container(
                 width:350,
                 height: 60,

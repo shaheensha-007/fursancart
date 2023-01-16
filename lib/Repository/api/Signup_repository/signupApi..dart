@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 
-import 'package:fursancart/usermodel.dart';
+import 'package:fursancart/Repository/modelclass/usermodel.dart';
 import 'package:http/http.dart';
 
 
-import 'api_client.dart';
+import '../api_client.dart';
 
 
 class SignupApi {

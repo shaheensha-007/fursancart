@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fursancart/signup_block/signup_bloc.dart';
-import 'package:fursancart/welcome.dart';
+import 'package:fursancart/Ui/welcome.dart';
 
-import '../home.dart';
+import '../Bloc/signup_block/signup_bloc.dart';
+import 'home.dart';
 
 class Letstart extends StatefulWidget {
   const Letstart({Key? key}) : super(key: key);
