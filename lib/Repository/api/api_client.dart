@@ -9,7 +9,7 @@ import 'api_exception.dart';
 class ApiClient {
 
   static final String basePath = 'http://fursancart.rootsys.in/api';
-  String token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGN5ZDlldnAwMHR6enI2amNyMXRlM3FyIiwiZW1haWwiOiJzZXZuaGduZ2htcGlvQGdtYWlsLmNvbXR5YyIsImlhdCI6MTY3Mzg0Njk1OCwiZXhwIjoxNjc0NDUxNzU4fQ.Sy8eS4pFwhi_Fq2qCTEeusPU9YIEw2pSi3Lrvzxca6c";
+  String token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGN6djhkNzIwMDAxenJ5dW9icmJ1cjhyIiwiZW1haWwiOiJzZXZtcGlvQGdtYWlsLmNvbXR5YyIsImlhdCI6MTY3MzkzNzYwOCwiZXhwIjoxNjc0NTQyNDA4fQ.LoTt9kGoVAf2WUkzOiD8GV-tJeI2UtMTBUC0k7ADqmI";
 
 
 

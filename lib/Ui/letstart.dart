@@ -8,9 +8,20 @@ import 'home.dart';
 class Letstart extends StatefulWidget {
   const Letstart({Key? key}) : super(key: key);
 
+
   @override
   State<Letstart> createState() => _LetstartState();
+
 }
+final form_key = GlobalKey<FormState>();
+String Letstart_email1 = '';
+String Letstart_username1='';
+String Letstart_password1='';
+String pattern =
+    r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+    r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+    r"{0,253}[a-zA-Z0-9])?)*$";
+
 
 class _LetstartState extends State<Letstart> {
   TextEditingController username=TextEditingController();
@@ -18,6 +29,7 @@ class _LetstartState extends State<Letstart> {
   TextEditingController password=TextEditingController();
   @override
   Widget build(BuildContext context) {
+    RegExp regex = RegExp(pattern);
     BlocListener<SignupBloc, SignupState>(
       listener: (context, state) {
         if(state is SignupblocLoaded){
@@ -77,6 +89,15 @@ class _LetstartState extends State<Letstart> {
             ),
           Container(
           child: TextFormField(controller: email,
+            validator:(value) {
+              if (value == null||
+                  !regex.hasMatch(value)) {
+                return 'Invalid email';
+              }
+            },
+            onSaved: (value) {
+              Letstart_email1  = value!;
+            },
           decoration: InputDecoration(
           focusedBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
@@ -101,6 +122,14 @@ class _LetstartState extends State<Letstart> {
     ),
     Container(
     child: TextFormField(controller: username,
+      validator:(value) {
+        if (value == null) {
+          return 'Invalid username';
+        }
+      },
+      onSaved: (value) {
+        Letstart_email1  = value!;
+      },
     decoration: InputDecoration(
     focusedBorder: InputBorder.none,
     disabledBorder: InputBorder.none,
@@ -123,6 +152,15 @@ class _LetstartState extends State<Letstart> {
     ),
     Container(width: 350,height: 50,
     child: TextFormField(controller: password,
+      validator:(value) {
+        if (value == null||
+            value.length>3) {
+          return 'the character at least 3';
+        }
+      },
+      onSaved: (value) {
+        Letstart_email1  = value!;
+      },
     decoration: InputDecoration(
     focusedBorder: InputBorder.none,
     disabledBorder: InputBorder.none,
@@ -143,10 +181,13 @@ class _LetstartState extends State<Letstart> {
     SizedBox(
     height: 40,
     ),
-    GestureDetector(onTap: (){
-      BlocProvider.of<SignupBloc>(context).add(FetchSignupEvent(email: email.text,username: username.text,password:password.text ));
-    },
-    child: Container(
+    GestureDetector(onTap: (){final isvalid = form_key.currentState?.validate();
+    if (isvalid == true) {
+    form_key.currentState?.save();
+    BlocProvider.of<SignupBloc>(context).add(FetchSignupEvent(username: username.text, email: email.text, password: password.text));}},
+
+
+      child: Container(
     width:350,
     height: 60,
     decoration: BoxDecoration(
